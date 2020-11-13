@@ -13,8 +13,8 @@ namespace StudyTimer
 
         public MyTimer()
         {
-            seconds = 50;
-            minutes = 24;
+            seconds = 0;
+            minutes = 0;
             hours = 0;
             timer = new System.Timers.Timer(1000);
         }
@@ -40,15 +40,13 @@ namespace StudyTimer
             }
 
             // take a break
-            if ((minutes == 25 || minutes == 50) && seconds == 0)
+            if ((minutes == 25 || minutes == 55) && seconds == 0)
             {
                 PlaySound();
-                Thread.Sleep(2000);
-                
             }
 
             // back to work
-            if (minutes == 30) { PlaySound(); }
+            if (minutes == 30 && seconds == 0) { PlaySound(); }
 
             if (minutes > 59) { PlaySound(); minutes = 0; hours += 1; }
 
@@ -61,7 +59,6 @@ namespace StudyTimer
         {
             player = new System.Media.SoundPlayer(@"C:\Sounds\buzzer.wav");
             player.Play();
-            Console.WriteLine("playing sound");
         }
     }
 }
